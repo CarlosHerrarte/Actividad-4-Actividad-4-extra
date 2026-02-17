@@ -1,0 +1,145 @@
+///////ALGORITMO DEL SISTEMA DE COTIZACIÓN DE SEGURO////////
+
+****INICIO DEL PROCESO*****
+Paso 1:
+
+Definir el precio base de la cotización.
+
+Paso 2:
+
+Definir los porcentajes de recargo:
+
+Según edad del asegurado.
+
+Según edad del cónyuge.
+
+Según cantidad de hijos.
+
+Paso 3:
+
+Inicializar las variables:
+
+Recargo individual.
+
+Recargo total.
+
+Precio final.
+
+
+****INGRESO Y VALIDACIÓN DE DATOS****
+
+Paso 4: Solicitar el nombre del asegurado
+
+Decisión 1:
+
+Si el nombre contiene solo letras → continuar.
+
+Si contiene números o está vacío → mostrar error y volver a solicitarlo.
+
+Paso 5: Solicitar la edad del asegurado
+
+Decisión 2:
+
+Si el dato ingresado es un número válido mayor que 0 → continuar.
+
+Si no es número o es inválido → mostrar error y volver a solicitarlo.
+
+Paso 6: Preguntar si está casado (SI/NO)
+
+Decisión 3:
+
+Si responde "SI" → continuar al Paso 7.
+
+Si responde "NO" → saltar al Paso 8.
+
+Si responde algo diferente → mostrar error y volver a preguntar.
+
+Paso 7: Solicitar edad del cónyuge (solo si está casado)
+
+Decisión 4:
+
+Si la edad es un número válido mayor que 0 → continuar.
+
+Si no es válida → mostrar error y volver a solicitarla.
+
+Paso 8: Preguntar si tiene hijos (SI/NO)
+
+Decisión 5:
+
+Si responde "SI" → continuar al Paso 9.
+
+Si responde "NO" → saltar al Paso 10.
+
+Si responde algo diferente → mostrar error y volver a preguntar.
+
+Paso 9: Solicitar cantidad de hijos
+
+Decisión 6:
+
+Si el número es válido y mayor o igual a 0 → continuar.
+
+Si es inválido → mostrar error y volver a solicitarlo.
+
+
+****CÁLCULO DE RECARGOS****
+
+Paso 10: Calcular recargo por edad del asegurado
+
+Decisión 7 (según rango de edad):
+
+Si tiene entre 18 y 24 años → aplicar 10%.
+
+Si tiene entre 25 y 49 años → aplicar 20%.
+
+Si tiene 50 años o más → aplicar 30%.
+
+Si es menor de 18 → no se aplica recargo.
+
+Sumar el recargo al total acumulado.
+
+Paso 11: Calcular recargo por edad del cónyuge (si aplica)
+
+Decisión 8 (según rango de edad del cónyuge):
+
+Si tiene entre 18 y 24 años → aplicar 10%.
+
+Si tiene entre 25 y 49 años → aplicar 20%.
+
+Si tiene 50 años o más → aplicar 30%.
+
+Sumar el recargo al total acumulado.
+
+Paso 12: Calcular recargo por hijos
+
+Decisión 9:
+
+Si tiene uno o más hijos → aplicar 20% del precio base por cada hijo.
+
+Si no tiene hijos → no se aplica recargo.
+
+Sumar al recargo total.
+
+
+****CÁLCULO FINAL****
+
+Paso 13:
+
+Sumar el recargo total al precio base.
+
+Paso 14:
+
+Obtener el precio final del seguro.
+
+****SALIDA DE RESULTADOS****
+
+Paso 15:
+
+Mostrar:
+
+Nombre del asegurado.
+
+Total de recargos aplicados.
+
+Precio final a pagar.
+
+****FIN DEL PROCESO****

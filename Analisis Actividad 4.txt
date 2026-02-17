@@ -1,0 +1,62 @@
+Proyecto Final del Curso
+
+**¿Cuál es el problema?
+
+La empresa de seguros TK-U quiere dejar de hacer cotizaciones manuales porque:
+
+Solo logran hacer máximo 50 al día.
+Pierden tiempo.
+Están perdiendo posibles clientes.
+Por eso necesitan un programa en JavaScript que calcule automáticamente el precio del seguro según ciertas condiciones del cliente.
+
+**¿Qué hace el programa?
+
+El programa parte de un precio base (ejemplo: Q.2,000) y luego le agrega recargos dependiendo de ciertas características del asegurado.
+
+Pero hay una condición principal:
+
+Solo se asegura a personas mayores de edad (18 años o más).
+Si la persona es menor de edad, no se hace cotización.
+
+**Casos que cambian el valor de la cotización
+
+El precio final cambia según tres factores:
+
+//Edad del asegurado
+
+Se aplica un recargo según su rango de edad:
+
+Edad	Recargo
+18 a 24 años	10% del precio base
+25 a 49 años	20% del precio base
+50 años o más	30% del precio base
+
+Este porcentaje se calcula siempre sobre el precio base, no sobre el total acumulado.
+
+//Si está casado/a
+
+Si la persona está casada:
+
+También se calcula un recargo según la edad del cónyuge.
+Se aplican los mismos rangos de edad (10%, 20%, 30%).
+
+Es decir, el seguro cubre a ambos y se suman los recargos de cada uno.
+
+//Cantidad de hijos
+
+Por cada hijo:
+
+Se cobra 20% del precio base.
+No importa la edad del hijo.
+Es 20% por cada uno.
+
+**El programa debe:
+
+Verificar que el asegurado sea mayor de 18.
+Iniciar con un precio base.
+Aplicar recargo según:
+Edad del asegurado.
+Edad del cónyuge (si está casado).
+Cantidad de hijos.
+Sumar todos los recargos al precio base.
+Mostrar el total final.

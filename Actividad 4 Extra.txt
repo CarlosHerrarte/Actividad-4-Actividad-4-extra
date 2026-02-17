@@ -1,0 +1,212 @@
+//Variables utiles 
+//Precio base de la cotización
+var precio_base = 2000
+
+//Valores de los recargos 
+var edad_18 = 0.1 
+var edad_25 = 0.2 
+var edad_50 = 0.3 
+
+var casado_18 = 0.1 
+var casado_25 = 0.2 
+var casado_50 = 0.3 
+
+var hijos_recargo = 0.2 
+
+//Recargo
+var recargo = 0
+var recargo_total = 0
+
+//Precio final 
+var precio_final = 0
+
+// VALIDACIONES
+
+while(true){
+
+  var opcion = ""
+  while(true){
+    opcion = prompt("Escriba 'Cotizar' para iniciar o 'Salir' para terminar")
+    if(opcion !== null){
+      opcion = opcion.toUpperCase()
+      if(opcion === "COTIZAR" || opcion === "SALIR"){
+        break
+      }
+    }
+    alert("Error: Solo puede escribir 'Cotizar' o 'Salir'.")
+  }
+
+  if(opcion === "SALIR"){
+    alert("Sistema finalizado.")
+    break
+  }
+
+  //Mensajes de alerta para ingresar datos 
+  var nombre = ""
+  while(true){
+    nombre = prompt("Ingrese su nombre, por favor")
+    
+    if(nombre !== null && /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)){
+      break
+    }else{
+      alert("Error: Ingrese solamente texto, no números.")
+    }
+  }
+
+  //Validación edad
+  var edad = ""
+  while(true){
+    edad = prompt("¿Cuantos años tiene? Ingrese solamente números")
+    
+    if(!isNaN(edad) && edad !== "" && parseInt(edad) > 0){
+      break
+    }else{
+      alert("Error: Ingrese solamente números válidos.")
+    }
+  }
+
+  var edad_numero = parseInt(edad)
+
+  //Validación casado (SI/NO)
+  var casado = ""
+  while(true){
+    casado = prompt("¿Está casado actualmente?", "SI/NO")
+    
+    if(casado !== null){
+      casado = casado.toUpperCase()
+      if(casado === "SI" || casado === "NO"){
+        break
+      }
+    }
+    alert("Error: Solo puede responder SI o NO.")
+  }
+
+  //Validación edad cónyuge (solo si está casado)
+  var edad_conyuge_numero = 0
+
+  if(casado === "SI"){
+    var edad_conyuge = ""
+    
+    while(true){
+      edad_conyuge = prompt("¿Que edad tiene su esposo/a?")
+      
+      if(!isNaN(edad_conyuge) && edad_conyuge !== "" && parseInt(edad_conyuge) > 0){
+        break
+      }else{
+        alert("Error: Ingrese solamente números válidos.")
+      }
+    }
+    
+    edad_conyuge_numero = parseInt(edad_conyuge)
+  }
+
+  //Validación hijos (SI/NO)
+  var hijos = ""
+  while(true){
+    hijos = prompt("¿Tiene hijos o hijas?", "SI/NO")
+    
+    if(hijos !== null){
+      hijos = hijos.toUpperCase()
+      if(hijos === "SI" || hijos === "NO"){
+        break
+      }
+    }
+    alert("Error: Solo puede responder SI o NO.")
+  }
+
+  //Validación cantidad hijos
+  var cantidad_hijos = 0
+
+  if(hijos === "SI"){
+    while(true){
+      var entrada_hijos = prompt("¿Cuántos hijos tiene?")
+      
+      if(!isNaN(entrada_hijos) && entrada_hijos !== "" && parseInt(entrada_hijos) >= 0){
+        cantidad_hijos = parseInt(entrada_hijos)
+        break
+      }else{
+        alert("Error: Ingrese solamente números válidos.")
+      }
+    }
+  }
+
+  // Validación cantidad propiedades
+  var cantidad_propiedades = 0
+  while(true){
+    var entrada_prop = prompt("¿Cuántas propiedades posee?")
+    if(!isNaN(entrada_prop) && entrada_prop !== "" && parseInt(entrada_prop) >= 0){
+      cantidad_propiedades = parseInt(entrada_prop)
+      break
+    }else{
+      alert("Error: Ingrese solamente números válidos.")
+    }
+  }
+
+  // Validación ingresos del asegurado
+  var salario = 0
+  while(true){
+    var entrada_salario = prompt("¿Cuál es su salario mensual?")
+    if(!isNaN(entrada_salario) && entrada_salario !== "" && parseFloat(entrada_salario) > 0){
+      salario = parseFloat(entrada_salario)
+      break
+    }else{
+      alert("Error: Ingrese solamente números válidos.")
+    }
+  }
+
+  // RECARGOS
+
+  // Recargo por edad del asegurado
+  if(edad_numero >= 18 && edad_numero < 25){
+    recargo = precio_base * edad_18
+    recargo_total += recargo
+  }
+  else if(edad_numero >= 25 && edad_numero < 50){
+    recargo = precio_base * edad_25
+    recargo_total += recargo
+  }
+  else if(edad_numero >= 50){
+    recargo = precio_base * edad_50
+    recargo_total += recargo
+  }
+
+  // Recargo por edad del cónyuge
+  if(casado === "SI"){
+    if(edad_conyuge_numero >= 18 && edad_conyuge_numero < 25){
+      recargo = precio_base * casado_18
+      recargo_total += recargo
+    }
+    else if(edad_conyuge_numero >= 25 && edad_conyuge_numero < 50){
+      recargo = precio_base * casado_25
+      recargo_total += recargo
+    }
+    else if(edad_conyuge_numero >= 50){
+      recargo = precio_base * casado_50
+      recargo_total += recargo
+    }
+  }
+
+  // Recargo por hijos
+  if(cantidad_hijos > 0){
+    recargo = precio_base * hijos_recargo * cantidad_hijos
+    recargo_total += recargo
+  }
+
+  // Recargo por propiedades
+  if(cantidad_propiedades > 0){
+    recargo = precio_base * 0.35 * cantidad_propiedades
+    recargo_total += recargo
+  }
+
+  // Recargo por ingresos
+  recargo = salario * 0.05
+  recargo_total += recargo
+
+  // Precio final
+  precio_final = precio_base + recargo_total
+
+  // Resultado
+  alert("Para el asegurado " + nombre)
+  alert("El recargo total será de: Q" + recargo_total.toFixed(2))
+  alert("El precio final será de: Q" + precio_final.toFixed(2))
+}
